@@ -33,7 +33,7 @@ import Select from "./Select/Select";
 import ImageWrapper from "./ImageWrapper/ImageWrapper";
 import "react-image-lightbox/style.css";
 
-const Gallery = ({
+function Gallery<ImageSlotProps>({
   images,
   screenWidthSizes,
   numOfImagesPerRow,
@@ -47,7 +47,7 @@ const Gallery = ({
   selectableItems,
   onSelect,
   renderImageSlot,
-}: ResponsiveGalleryProps) => {
+}: ResponsiveGalleryProps<ImageSlotProps>) {
   const { width } = useScreenDimensions(screenWidthSizes);
   const userGalleryOptions: GalleryWidthOptions = {
     screenWidthSizes,
@@ -132,7 +132,7 @@ const Gallery = ({
       </Row>
     </>
   );
-};
+}
 
 Gallery.defaultProps = {
   screenWidthSizes: defaultScreenWidthSizes,
