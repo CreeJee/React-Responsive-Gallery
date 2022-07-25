@@ -5,6 +5,7 @@
     "module": "esnext", // specify module code generation
     "jsx": "react-jsx",
     "target": "es5", // specify ECMAScript target version
+
     "allowJs": true, // allow a partial TypeScript and JavaScript codebase
     "allowSyntheticDefaultImports": true, //Allow 'import x from y' when a module doesn't have a default export.
     "declaration": true, //Generate .d.ts files from TypeScript and JavaScript files in your project.
@@ -13,5 +14,5 @@
     "outDir": "dist",
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"]
+  "include": ["src", "setupTests.ts"]
 }

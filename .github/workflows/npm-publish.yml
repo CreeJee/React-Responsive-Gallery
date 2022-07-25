@@ -4,10 +4,10 @@
 name: React-testing-library Package CI
 
 # on: [push]
-on: 
+on:
   workflow_dispatch:
   push:
-    branches: [ master, develop ]
+    branches: [master, develop]
 
 jobs:
   build:
@@ -51,12 +51,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
       - run: npm ci --legacy-peer-deps
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
+
   publish-npm-beta:
     needs: [build, test, lint]
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
       - run: npm ci --legacy-peer-deps
       - run: npm run build
       - run: npm publish --tag beta

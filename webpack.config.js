@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
-const PrettierPlugin = require("prettier-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 // const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-
+/**
+ * @type {import('webpack').Configuration}
+ */
 module.exports = {
   entry: "./src/index.tsx",
   output: {
@@ -13,27 +14,29 @@ module.exports = {
     libraryTarget: "commonjs2",
   },
   plugins: [
-    new PrettierPlugin(),
     // new BundleAnalyzerPlugin(),
   ],
   optimization: {
-    minimizer: [new UglifyJsPlugin()],
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", "scss"],
     modules: [path.resolve("./src"), path.resolve("./node_modules")],
   },
   module: {
     rules: [
       {
         test: /\.(t|j)sx?$/,
-        use: { loader: "ts-loader" },
+        use: {
+          loader: "ts-loader",
+        },
         exclude: /node_modules/,
       },
       {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
+        use: [
           "style-loader",
           "css-loader",
           {
