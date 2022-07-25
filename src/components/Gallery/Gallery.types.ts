@@ -30,7 +30,7 @@ export type GallerySizes = {
   imagesPaddingBottom: number;
 };
 
-export interface ImageElementProps {
+export interface ImageElementProps<ExtraDataArgs = unknown> {
   src: string;
   id?: string;
   alt?: string;
@@ -40,10 +40,12 @@ export interface ImageElementProps {
   orderS?: number;
   orderM?: number;
   orderL?: number;
+
+  extra?: ExtraDataArgs;
 }
 
-export type ResponsiveGalleryProps<ImageSlotProps = unknown> = {
-  images: Array<ImageElementProps>;
+export type ResponsiveGalleryProps<ExtraDataArgs = unknown> = {
+  images: Array<ImageElementProps<ExtraDataArgs>>;
   screenWidthSizes?: ScreenWidthSizes;
   numOfImagesPerRow?: OptionsWidthSizes;
   imagesMaxWidth?: OptionsWidthSizes;
@@ -55,9 +57,7 @@ export type ResponsiveGalleryProps<ImageSlotProps = unknown> = {
   selectable?: boolean;
   selectableItems?: Array<string>;
   onSelect?: (id: string, val: boolean) => void;
-  renderImageSlot?: (
-    image: ImageElementProps & { extra?: ImageSlotProps }
-  ) => JSX.Element;
+  renderImageSlot?: (image: ImageElementProps<ExtraDataArgs>) => JSX.Element;
 };
 
 export type ImagesCols = Array<ImageElementProps>;

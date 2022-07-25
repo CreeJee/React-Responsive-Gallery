@@ -103,30 +103,34 @@ function Gallery<ImageSlotProps>({
             colSize={100 / gallerySizes.numOfImagesPerRow}
             colPadding={gallerySizes.colsPadding}
           >
-            {imagesCols[key].map((img: ImageElementProps, imgIndex: number) => (
-              <ImageWrapper key={img.id || nanoid()}>
-                {selectable && (
-                  <Select
-                    id={img?.id || img.src}
-                    selectableItems={selectableItems}
-                    onSelect={onSelect}
-                    imagesMaxWidth={gallerySizes.imagesMaxWidth}
-                  />
-                )}
-                <Image
-                  src={img.src}
-                  maxWidth={gallerySizes.imagesMaxWidth}
-                  alt={img.alt}
+            {imagesCols[key].map(
+              (img: ImageElementProps<ImageSlotProps>, imgIndex: number) => (
+                <ImageWrapper
+                  key={img.id || nanoid()}
                   paddingBottom={gallerySizes.imagesPaddingBottom}
-                  className={`${imagesStyle} ${img.imgClassName || ""}`}
-                  useLightBox={useLightBox}
-                  onClick={() => onImageClick(imgIndex, colIndex)}
-                />
-                {typeof renderImageSlot === "function"
-                  ? renderImageSlot(img)
-                  : null}
-              </ImageWrapper>
-            ))}
+                >
+                  {selectable && (
+                    <Select
+                      id={img?.id || img.src}
+                      selectableItems={selectableItems}
+                      onSelect={onSelect}
+                      imagesMaxWidth={gallerySizes.imagesMaxWidth}
+                    />
+                  )}
+                  <Image
+                    src={img.src}
+                    maxWidth={gallerySizes.imagesMaxWidth}
+                    alt={img.alt}
+                    className={`${imagesStyle} ${img.imgClassName || ""}`}
+                    useLightBox={useLightBox}
+                    onClick={() => onImageClick(imgIndex, colIndex)}
+                  />
+                  {typeof renderImageSlot === "function"
+                    ? renderImageSlot(img)
+                    : null}
+                </ImageWrapper>
+              )
+            )}
           </Col>
         ))}
       </Row>

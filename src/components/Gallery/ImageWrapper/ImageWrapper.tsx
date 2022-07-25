@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
-const StyledImageWrapper = styled.div`
+interface ImageWrapperProps {
+  paddingBottom: number;
+  children: React.ReactNode;
+}
+const StyledImageWrapper = styled.div<ImageWrapperProps>`
   position: relative;
+  padding-bottom: ${({ paddingBottom }) => paddingBottom || 0}px;
 `;
-
-const ImageWrapper = ({ children }: { children: React.ReactNode }) => (
-  <StyledImageWrapper>{children}</StyledImageWrapper>
+const ImageWrapper = ({ children, ...styles }: ImageWrapperProps) => (
+  <StyledImageWrapper {...styles}>{children}</StyledImageWrapper>
 );
 export default ImageWrapper;
