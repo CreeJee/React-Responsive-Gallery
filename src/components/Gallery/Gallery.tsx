@@ -46,6 +46,7 @@ const Gallery = ({
   selectable,
   selectableItems,
   onSelect,
+  renderImageSlot,
 }: ResponsiveGalleryProps) => {
   const { width } = useScreenDimensions(screenWidthSizes);
   const userGalleryOptions: GalleryWidthOptions = {
@@ -121,6 +122,9 @@ const Gallery = ({
                   useLightBox={useLightBox}
                   onClick={() => onImageClick(imgIndex, colIndex)}
                 />
+                {typeof renderImageSlot === "function"
+                  ? renderImageSlot(img)
+                  : null}
               </ImageWrapper>
             ))}
           </Col>

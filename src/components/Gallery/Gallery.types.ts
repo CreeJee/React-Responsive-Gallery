@@ -55,7 +55,7 @@ export type ResponsiveGalleryProps = {
   selectable?: boolean;
   selectableItems?: Array<string>;
   onSelect?: (id: string, val: boolean) => void;
-  imageSlot?: (image: ImageElementProps) => React.ReactNode;
+  renderImageSlot?: (image: ImageElementProps) => JSX.Element;
 };
 
 export type ImagesCols = Array<ImageElementProps>;
