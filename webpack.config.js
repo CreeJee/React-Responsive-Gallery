@@ -21,7 +21,7 @@ module.exports = {
     minimizer: [new TerserPlugin()],
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", "scss"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
     modules: [path.resolve("./src"), path.resolve("./node_modules")],
   },
   module: {
@@ -37,8 +37,12 @@ module.exports = {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
         use: [
-          "style-loader",
-          "css-loader",
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
           {
             loader: "sass-loader",
             options: {
