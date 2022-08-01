@@ -6,7 +6,6 @@
     "module": "esnext",
     "jsx": "react-jsx",
     "lib": ["ES6","DOM"],
-
     "allowJs": true, // allow a partial TypeScript and JavaScript codebase
     "allowSyntheticDefaultImports": true, //Allow 'import x from y' when a module doesn't have a default export.
     "esModuleInterop": false,
